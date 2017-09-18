@@ -52,7 +52,7 @@ public class Tester {
             Is it because of the shutdown() that just stops the adding of new 
             tasks?
             So all the calls to the incr method gets stored as tasks before 
-            the shutdown is called?
+            the main thread gets to call shutdown()?
             
             
         c) Solve the problem using synchronization techniques.
