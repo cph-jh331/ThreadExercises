@@ -36,7 +36,8 @@ public class Tester {
 
         /*
         a) Do you get the right result? 
-            Depends if the number of spectators are supposed to be random...
+            Depends if the number of spectators are supposed to be random and
+            less than 40000...
             But I guess not.
         
         b) What is the problem in the code? (It’s there whether you get the 
@@ -52,12 +53,12 @@ public class Tester {
             Is it because of the shutdown() that just stops the adding of new 
             tasks?
             So all the calls to the incr method gets stored as tasks before 
-            the main thread gets to call shutdown()?
+            the main thread gets to call shutdown() if you synchronize the
+            incr() method?
             
             
         c) Solve the problem using synchronization techniques.
-            Can be fixed by making TurnTileCounter.incr() synchronized.
-            
+            Can be fixed by making TurnTileCounter.incr() synchronized.            
          */
     }
 }

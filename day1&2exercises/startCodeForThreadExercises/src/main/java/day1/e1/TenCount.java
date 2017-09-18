@@ -2,8 +2,8 @@ package day1.e1;
 
 public class TenCount implements Runnable {
 
-    private boolean isCounting = true;
-    private long count = 9;
+    private volatile boolean isCounting = true;
+    private volatile long count = 10;
 
     public void setIsCounting(boolean isCounting)
     {
@@ -15,10 +15,14 @@ public class TenCount implements Runnable {
     {
         while (isCounting)
         {
-            count++;
+            System.out.println("hvad fanden");
             try
             {
                 Thread.sleep(3000);
+                if (isCounting == false)
+                {
+                    return;
+                }
                 System.out.println(count);
 
             } catch (InterruptedException e)
@@ -26,6 +30,7 @@ public class TenCount implements Runnable {
                 System.out.println(Thread.currentThread().getName() + " Interrupted!");
                 return;
             }
+            count++;
         }
     }
 

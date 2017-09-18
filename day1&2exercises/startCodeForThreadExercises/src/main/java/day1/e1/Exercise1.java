@@ -37,7 +37,8 @@ public class Exercise1 {
         c) argue that your solution is correct (argue, don’t prove)
             Tbh t2 takes about 10sec to complete, so couldn't we just see if that 
             thread is alive and then interrupt t3 if not? I do not understand
-            how else to fix the problem with extra count?
+            how else to fix the problem with the extra 3sec sleep.
+            
             while(t3.isAlive())
             {
                 if(t2.isAlive() == false)
@@ -49,15 +50,15 @@ public class Exercise1 {
         t1.start();
         t2.start();
         t3.start();
-        //Thread.sleep(10000);
-        //tenCount.setIsCounting(false);
-        while (t3.isAlive())
-        {
-            if (t2.isAlive() == false)
-            {
-                t3.interrupt();
-            }
-        }
+        Thread.sleep(10000);
+        tenCount.setIsCounting(false);
+//        while (t3.isAlive())
+//        {
+//            if (t2.isAlive() == false)
+//            {
+//                t3.interrupt();
+//            }
+//        }
 
     }
 }
