@@ -18,6 +18,17 @@ public class Tester {
     urls.add("http://www.google.com");
     urls.add("http://politiken.dk");
     urls.add("https://cphbusiness.mrooms.net/");
+    urls.add("https://dr.dk/");
+    urls.add("http://tv2.dk/");
+    urls.add("http://www.hest.dk/");
+    urls.add("http://www.hesteklinikken.dk/");
+    urls.add("http://www.fisk.dk/");
+    urls.add("http://www.toilet.dk/");
+    urls.add("http://www.gud.dk/");
+    urls.add("http://www.jens.dk/");
+    urls.add("http://www.tv3.dk/");
+    urls.add("http://www.bt.dk/");
+    urls.add("http://www.berlingske.dk/");
     //TODO: Add some more URL's of your own choice
 
     //Holds the Documents produced by the producers. This is Q2 in the exercise figure

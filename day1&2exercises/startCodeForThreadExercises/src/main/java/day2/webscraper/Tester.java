@@ -25,6 +25,9 @@ public class Tester {
         thread1.start();
         thread2.start();
         thread3.start();
+        thread1.join();
+        thread2.join();
+        thread3.join();
         long end = System.nanoTime();
         System.out.println("Time Sequential: " + (end - start));
 

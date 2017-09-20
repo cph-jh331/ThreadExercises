@@ -3,38 +3,60 @@ package day2.rndnumberprodcon;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RandomNumberConsumer implements Runnable {
 
-  ArrayBlockingQueue<Integer> numbersProduced;
+    ArrayBlockingQueue<Integer> numbersProduced;
 
-  public RandomNumberConsumer(ArrayBlockingQueue<Integer> numbersProduced) {
-    this.numbersProduced = numbersProduced;
-  }
-  //Should eventually hold the sum of all random number consumed
-  int sumTotal = 0;
-  List<Integer> below50 = new ArrayList();
-  List<Integer> aboveOr50 = new ArrayList();
-
-  @Override
-  public void run() {
-    //In this exercise, we start four threads, each producing 100 numbers, so we know how much to consume
-    for (int i = 0; i < 400; i++) {
-      //Todo: Fetch numbers from numbersProduced and do what you have to do
+    public RandomNumberConsumer(ArrayBlockingQueue<Integer> numbersProduced)
+    {
+        this.numbersProduced = numbersProduced;
     }
-  }
+    //Should eventually hold the sum of all random number consumed
+    int sumTotal = 0;
+    List<Integer> below50 = new ArrayList();
+    List<Integer> aboveOr50 = new ArrayList();
 
-  
-  public int getSumTotal() {
-    return sumTotal;
-  }
+    @Override
+    public void run()
+    {
+        //In this exercise, we start four threads, each producing 100 numbers, so we know how much to consume
+        for (int i = 0; i < 400; i++)
+        {
+            try
+            {
+                int numb = this.numbersProduced.take();
+                if (numb >= 50)
+                {
+                    this.aboveOr50.add(numb);
+                } else
+                {
+                    this.below50.add(numb);
+                }
+                sumTotal += numb;
 
-  public List<Integer> getBelow50() {
-    return below50;
-  }
+            } catch (InterruptedException ex)
+            {
+                Logger.getLogger(RandomNumberConsumer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
-  public List<Integer> getAboveOr50() {
-    return aboveOr50;
-  }
-  
+    public int getSumTotal()
+    {
+        return sumTotal;
+    }
+
+    public List<Integer> getBelow50()
+    {
+        return below50;
+    }
+
+    public List<Integer> getAboveOr50()
+    {
+        return aboveOr50;
+    }
+
 }

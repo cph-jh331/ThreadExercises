@@ -42,19 +42,8 @@ public class Tester {
         
         b) What is the problem in the code? (It’s there whether you get the 
         right result or not)
-            The problem is that every one is calling the same sharedCounter.
-            So the threads are sneaking in and doing something with value 
-            making some of the spectators not be counted... Why is this? 
-            I can fix it by synchronizing the incr() method, but I do not 
-            understand why the number of spectators becomes less, when not 
-            synchronized.
-            So the solution might be wrong, even if it works.
-        ***********************************************************************
-            Is it because of the shutdown() that just stops the adding of new 
-            tasks?
-            So all the calls to the incr method gets stored as tasks before 
-            the main thread gets to call shutdown() if you synchronize the
-            incr() method?
+            The problem is that all the threads are changing the value of the
+            the shared counter, making some of the spectators not be counted.
             
             
         c) Solve the problem using synchronization techniques.
