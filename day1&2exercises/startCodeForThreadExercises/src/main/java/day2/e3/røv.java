@@ -7,7 +7,7 @@ public class røv {
 
     public static void main(String[] args) throws Exception
     {
-
+        //exercise 2
         BlockingQueue queue = new ArrayBlockingQueue(1024);
 
         Producer producer = new Producer(queue);

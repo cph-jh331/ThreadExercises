@@ -26,6 +26,7 @@ public class Tester {
             System.out.println("Numbers produced: " + resources.getResourceNumbers().size());
             //how do I kill the deadlock detector? I could just use d.stop()...            
             
+            
         } catch (InterruptedException ex)
         {
             Logger.getLogger(Tester.class.getName()).log(Level.SEVERE, null, ex);
