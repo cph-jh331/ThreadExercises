@@ -12,13 +12,13 @@ public class Tester {
 
     public static void main(String[] args) throws InterruptedException
     {
-        calcFibsWithNumbThreads(8);
+        calcFibsWithNumbThreads(4);
     }
 
     public static void calcFibsWithNumbThreads(int numberOfProducers) throws InterruptedException
     {
         Collection<Long> nList = new ArrayList<>();
-        //4,5,8,12,21,22,34,35,36,37,42
+        //4,5,8,12,21,22,34,35,36,37,4
         nList.add(4L);
         nList.add(5L);
         nList.add(8L);
@@ -36,7 +36,7 @@ public class Tester {
         {
             startNumbers.add(number);
         }
-
+        long start = System.nanoTime();
         BlockingQueue<Long> calculatedNumbers = new ArrayBlockingQueue(10);
         ExecutorService ex = Executors.newCachedThreadPool();
         for (int i = 0; i < numberOfProducers; i++)
@@ -46,6 +46,9 @@ public class Tester {
         ex.execute(new Consumer(calculatedNumbers));
         ex.shutdown();
         ex.awaitTermination(5, TimeUnit.SECONDS);
+        long end = System.nanoTime();
+        System.out.println("Time Sequential: " + (end - start));
+
         System.out.println("Closing down...");
     }
 

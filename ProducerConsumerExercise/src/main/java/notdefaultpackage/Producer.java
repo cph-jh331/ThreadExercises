@@ -26,14 +26,12 @@ public class Producer implements Runnable {
 
     @Override
     public void run()
-    {
-        boolean isNumbersEmpty = false;
-        while (!isNumbersEmpty)
+    {        
+        while (true)
         {
             Long number = startNumbers.poll();
             if (number == null)
-            {
-                isNumbersEmpty = true;
+            {     
                 break;
             }
             Long calculatedNumber = fib(number);

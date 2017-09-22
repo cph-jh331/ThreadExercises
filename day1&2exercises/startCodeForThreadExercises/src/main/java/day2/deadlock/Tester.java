@@ -24,7 +24,8 @@ public class Tester {
             System.out.println("Done");
             System.out.println("Words produced: " + resources.getResourceWords().size());
             System.out.println("Numbers produced: " + resources.getResourceNumbers().size());
-            //how do I kill the deadlock detector? I could just use d.stop()...            
+            //how do I kill the deadlock detector? I could just use d.stop()... 
+            d.stop();
             
             
         } catch (InterruptedException ex)

@@ -1,6 +1,6 @@
 package day1.e1;
 
-public class TenCount implements Runnable {
+public class Thread3 implements Runnable {
 
     private volatile boolean isCounting = true;
     private volatile long count = 10;
@@ -15,7 +15,6 @@ public class TenCount implements Runnable {
     {
         while (isCounting)
         {
-            System.out.println("hvad fanden");
             try
             {
                 Thread.sleep(3000);

@@ -3,6 +3,8 @@ package producers;
 import entity.Group;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -14,13 +16,27 @@ import org.jsoup.nodes.Document;
 
 public class GroupProducer {
 
-    public List<Group> getGroups(List<String> urls)
+    private BlockingQueue<String> urlQueue;
+    
+
+    public GroupProducer(List<String> urls)
     {
-        List<Group> groups = new ArrayList<>();
-        List<Future<Group>> futureList = new ArrayList<>();
-        ExecutorService ex = Executors.newFixedThreadPool(4);
+        urlQueue = new ArrayBlockingQueue(urls.size());
         for (String url : urls)
         {
+            urlQueue.add(url);
+        }
+    }
+
+    public List<Group> populateGroups()
+    {
+        System.out.println("updating groups");
+        List<Group> groups = new ArrayList<>();
+        List<Future<Group>> futureList = new ArrayList<>();
+        ExecutorService ex = Executors.newFixedThreadPool(10);
+        for (String url : urlQueue)
+        {
+            
             Callable<Group> ca = () ->
             {
                 Document doc = Jsoup.connect(url).get();
@@ -41,6 +57,7 @@ public class GroupProducer {
             } catch (InterruptedException | ExecutionException ex1)
             {
                 System.out.println("hvad satan");
+                break;
             }
         }
         ex.shutdown();

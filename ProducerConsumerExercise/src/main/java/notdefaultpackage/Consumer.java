@@ -17,15 +17,13 @@ public class Consumer implements Runnable {
     @Override
     public void run()
     {
-        boolean moreToConsume = true;
-        while (moreToConsume)
+        while (true)
         {
             try
             {
                 Long number = calculatedValues.poll(2, TimeUnit.SECONDS);
                 if (number == null)
                 {
-                    moreToConsume = false;
                     break;
                 }
                 this.totalSum += number;
