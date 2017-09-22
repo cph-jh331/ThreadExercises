@@ -1,2 +1,4 @@
 # ThreadExercises
-thread exercises...
+
+*Day one and two:
+
